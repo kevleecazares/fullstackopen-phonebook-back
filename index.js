@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const Contact = require("./models/contact");
 const app = express();
@@ -25,7 +24,7 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(cors());
 app.use(express.json());
-// app.use(requestLogger);
+app.use(requestLogger);
 
 app.get("/", (request, response) => {
   response.send("<h1>Hello world</h1>");

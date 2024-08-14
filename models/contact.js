@@ -1,18 +1,25 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 
 const url = process.env.MONGO_DB_URI;
+console.log("connecting to", url);
 
-mongoose.set("strictQuery", false);
 mongoose
   .connect(url)
-  .then((result) => console.log("connected to mongodb"))
+  .then(() => console.log("connected to mongodb"))
   .catch((error) => console.log("error connecting to mongodb", error.message));
 
 const contactSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  number: {
+    type: String,
+    required: true,
+  },
   date: Date,
 });
 
